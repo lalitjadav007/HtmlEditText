@@ -1,0 +1,3 @@
+include ':htmlEditText'
+include ':app'
+rootProject.name = "HtmlEditText"

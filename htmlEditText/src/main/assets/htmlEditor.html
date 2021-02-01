@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0" />
+    <style>
+            html, body { height: 100%; width:100%; margin:0; padding:0;}
+            body > div { height: 100%; width:100%; position: absolute; top:0; left:0;}
+
+            .editor {
+                overflow: scroll;
+                border-style: none!important;
+                outline: none;
+            }
+
+            [contenteditable][placeholder]:empty:before {
+                content: attr(placeholder);
+                position: absolute;
+                color: gray;
+                background-color: transparent;
+	        }
+     </style>
+
+    <script>
+        document.getElementById('editor').addEventListener('paste', function (e) {
+               document.getElementById('editor').innerHTML = 'Paste is supported';
+        }, false);
+    </script>
+</head>
+<body>
+<div id="editor" class="editor" placeholder="___HINT___" contenteditable="___INPUT_ENABLED___" onkeyup="injectedObject.textDidChange(this.innerHTML)" onpaste="var e=this; setTimeout(function(){injectedObject.textDidChange(e.innerHTML);}, 0);" tabindex="0">___REPLACE___</div>
+</body>
+</html>
