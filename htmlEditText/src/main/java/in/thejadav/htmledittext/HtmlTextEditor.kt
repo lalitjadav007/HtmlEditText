@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.AttributeSet
 import android.webkit.*
+import androidx.core.text.HtmlCompat
 import androidx.lifecycle.MutableLiveData
 import java.io.IOException
 import java.io.InputStream
@@ -58,6 +59,10 @@ class HtmlTextEditor(context: Context, attrs: AttributeSet?) : WebView(context, 
 
     fun observeStringValue(): MutableLiveData<String?> {
         return mJsObject.text
+    }
+
+    fun getPlainText() : String {
+        return HtmlCompat.fromHtml(HtmlCompat.fromHtml(text ?: "", HtmlCompat.FROM_HTML_MODE_LEGACY).toString().trim(), HtmlCompat.FROM_HTML_MODE_COMPACT).toString().trim()
     }
 
     init {
